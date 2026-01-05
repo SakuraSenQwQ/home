@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import router from '@/router';
 import { ref } from 'vue';
-const baseurl = "http://192.168.1.153:9191"
+const baseurl = "http://192.168.1.153:9191/v1"
 const imgsrc = ref('/imgs/m1.gif')
 function sel(num: number) {
   if (num == 0) {

@@ -56,7 +56,7 @@ const isplay = ref(false)
 const playingtime = ref(0)
 const audiotime = ref(0)
 const AutoMusic = prop.random
-const baseurl = "http://192.168.1.153:9191/"
+const baseurl = "http://192.168.1.153:9191/v1"
 
 const autolist = ["125074", "779480", "514530", "514533", "514540"]
 
@@ -90,7 +90,7 @@ watch(open, () => {
 
 //初始化时获取列表
 function GetList() {
-  fetch(baseurl + 'sairen/list')
+  fetch(baseurl + '/sairen/list')
     .then((d) => {
       return d.json()
     })
@@ -128,7 +128,7 @@ function init() {
   })
 }
 function GetAlbuminfo(id: string) {
-  fetch(baseurl + 'sairen/album?id=' + id)
+  fetch(baseurl + '/sairen/album?id=' + id)
     .then((d) => d.json())
     .then((d) => {
       AlbumInfo.value = d.data
@@ -136,7 +136,7 @@ function GetAlbuminfo(id: string) {
     })
 }
 function GetSonginfo(id: string) {
-  fetch(baseurl + 'sairen/song?id=' + id)
+  fetch(baseurl + '/sairen/song?id=' + id)
     .then((d) => d.json())
     .then((d) => {
       SongInfo.value = d.data
