@@ -22,7 +22,7 @@ const list = ref({
   "wx": true,
   "value": "",
   "email": "",
-  "code": 0
+  "code": NaN
 })
 function payed() {
   pay.value = true
@@ -55,6 +55,9 @@ function upload() {
       }, 3000);
     } else {
       tips.value = "提交成功！"
+      setTimeout(() => {
+        router.push('/')
+      }, 3000);
       list.value = {
         "name": "",
         "avat": "",
@@ -63,7 +66,7 @@ function upload() {
         "wx": true,
         "value": "",
         "email": "",
-        "code": 0
+        "code": NaN
       }
     }
   })
@@ -151,8 +154,8 @@ const vali = ref('获取验证码')
       <span>邮箱</span>
       <input type="text" id="Iemail" v-model="list.email">
       <span>验证码</span>
-      <div id="c_code" @click="SendEmail"><input type="number" id="Icode" v-model="list.code"><span v-if="!sendok"
-          class="vali">{{ vali
+      <div id="c_code"><input type="number" id="Icode" v-model="list.code"><span v-if="!sendok" style="cursor: pointer;"
+          class="vali" @click="SendEmail">{{ vali
           }}</span>
         <span v-if="sendok">{{ time }}</span>
       </div>
@@ -176,8 +179,11 @@ const vali = ref('获取验证码')
   gap: 1rem;
 
   input::-webkit-inner-spin-button {
-
     appearance: none !important;
+  }
+
+  input {
+    appearance: textfield !important;
   }
 
   input {

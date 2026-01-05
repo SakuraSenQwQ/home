@@ -597,7 +597,7 @@ function musicleave() {
 
   box-sizing: border-box;
   margin: 0;
-  box-shadow: #fff 0 0 12px;
+  box-shadow: #fff 0 0 5px;
   background-color: #000000;
   backdrop-filter: blur(12px);
 }

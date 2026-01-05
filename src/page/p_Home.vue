@@ -37,8 +37,10 @@ onMounted(() => {
   const t2 = gsap.timeline()
   t2.repeat(-1)
   t2.yoyo(true)
-  t2.to("#more3", { opacity: 0, duration: 0.3 })
-    .to("#more2", { opacity: 0, duration: 0.3 })
+
+  t2.to("#more3", { opacity: 0, duration: 0.2 })
+    .to("#more2", { opacity: 0, duration: 0.2 })
+    .to("#more1", { opacity: 0, duration: 0.2 })
 })
 const prop = defineProps({
   random: {
@@ -48,7 +50,6 @@ const prop = defineProps({
 })
 const a = prop.random
 const slog = ["从来没有人质疑日升月落，也没有人质疑万物生长。", "“我想让你坚信，我们仍可同行，在无尽花海中聆听……宇宙的声音。”", "晚安...", "沧海桑田，山河世变", "Miss You."]
-console.log(prop.random)
 </script>
 <template>
   <div id="person">
@@ -112,11 +113,11 @@ console.log(prop.random)
 
 #more2 {
   position: relative;
-  top: -1rem !important;
+  top: -1.2rem !important;
 }
 
 #more3 {
-  top: -2rem !important;
+  top: -2.4rem !important;
 }
 
 #person {
@@ -128,6 +129,7 @@ console.log(prop.random)
   }
 
   p {
+    font-size: 1.2rem;
     color: #fff;
     margin: 0 0 2rem 0;
   }
@@ -163,22 +165,6 @@ console.log(prop.random)
     }
   }
 
-  #avat::before {
-    content: '❤️';
-    font-size: 2rem;
-    text-align: center;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 2.5rem;
-    border-radius: 100%;
-    height: 2.5rem;
-    background-color: #fff;
-    position: absolute;
-    bottom: 0.3rem;
-    right: 2rem;
-    z-index: 999;
-  }
+
 }
 </style>

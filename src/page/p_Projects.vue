@@ -72,8 +72,14 @@ function startdrag(e: MouseEvent) {
           <h2>{{ val.name }}</h2>
         </div>
         <p>{{ val.desc }}</p>
-        <div class="bts"><span><a class="link" :href="val.github" target="_blank">Github</a></span><span><a class="link"
-              :href="val.github" draggable="false" target="_blank">项目链接</a></span></div>
+        <div class="bts">
+          <span v-if="val.github !== ''">
+            <a class="link" :href="val.github" target="_blank">Github</a>
+          </span>
+          <span v-if="val.web !== ''">
+            <a class="link" :href="val.web" draggable="false" target="_blank">项目链接</a>
+          </span>
+        </div>
       </div>
     </div>
   </div>
