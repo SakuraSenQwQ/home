@@ -4,7 +4,7 @@ import gsap from 'gsap';
 const contactlist = ref()
 const isphone = ref(false)
 function GetList() {
-  fetch("./contact.json")
+  fetch("./json/contact.json")
     .then((d) => d.json())
     .then((d) => {
       contactlist.value = d

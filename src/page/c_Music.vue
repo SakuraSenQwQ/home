@@ -37,10 +37,13 @@ type mlist = {
     string
   ]
 }
+const prop = defineProps({
+  "random": Number
+})
 const musiclist = ref<mlist[]>([])
 const now = ref('loading')
 const open = ref(false)
-const autoplay = ref(0)
+const autoplay = ref(-1)
 const whatisthis = ref(false)
 const getlistisok = ref(true)
 const initok = ref(false)
@@ -48,9 +51,15 @@ const SongInfo = ref<songobj>()
 const AlbumInfo = ref<albumobj>()
 const titleover = ref(false)
 const isplay = ref(false)
+
+//是否在播放
 const playingtime = ref(0)
 const audiotime = ref(0)
+const AutoMusic = prop.random
 const baseurl = "http://192.168.1.153:9191/"
+
+const autolist = ["125074", "779480", "514530", "514533", "514540"]
+
 function Start() {
   gsap.to(".music", {
     delay: 0.5,
@@ -88,9 +97,7 @@ function GetList() {
     .then((d) => {
       musiclist.value = d.data.list
       now.value = "已获取到" + musiclist.value.length + "首歌曲"
-      setTimeout(() => {
-        init()
-      }, 1000);
+      init()
     }).catch(() => {
       now.value = "获取列表失败"
       setTimeout(() => {
@@ -99,19 +106,22 @@ function GetList() {
     })
 }
 function init() {
+  GetSonginfo(autolist[AutoMusic!] ?? musiclist.value[autoplay.value]!.cid)
   now.value = "初始化中..."
   gsap.to(".music", {
     boxShadow: '#fff 0 0 0',
     duration: 0.5
   })
-  gsap.to("#info", {
-    duration: 2,
-    left: "16rem",
-    ease: "power2.out",
+  now.value = "初始化完成"
+  gsap.to("#m2info", {
+    delay: 1,
+    duration: 0.5,
+    backgroundColor: "#fff",
+    opacity: 0,
+    ease: "none",
   }).then(() => {
-    now.value = "初始化完成"
+
     initok.value = true
-    GetSonginfo(musiclist.value[autoplay.value]!.cid)
     setTimeout(() => {
       dover()
     }, 1000);
@@ -133,12 +143,15 @@ function GetSonginfo(id: string) {
       GetAlbuminfo(SongInfo.value!.albumCid)
       Getlrc(SongInfo.value!.lyricUrl)
       setTimeout(() => {
-        Setting()
+        if (document.getElementById("mcover")) {
+          Setting()
+        }
         Play()
       }, 0);
 
     })
 }
+
 const audio = new Audio()
 audio.autoplay = true
 
@@ -383,7 +396,7 @@ function musicleave() {
     <span @click="whatisthis = false">关闭窗口</span>
   </div>
   <div class="music" v-if="getlistisok" @mouseleave="musicleave()">
-    <div id="info" v-if="open && !initok">
+    <div id="m2info" v-if="open && !initok">
       <h1 class="mtitle">塞壬唱片</h1>
       <span>{{ now }}</span>
     </div>
@@ -547,7 +560,7 @@ function musicleave() {
   opacity: 0;
 }
 
-#info {
+#m2info {
   padding: 1rem;
   background-color: #000000;
   width: 100%;

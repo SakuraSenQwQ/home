@@ -33,7 +33,7 @@ document.addEventListener("mousemove", () => {
 })
 
 function getlist() {
-  fetch("./projects.json")
+  fetch("./json/projects.json")
     .then((d) => d.json())
     .then((d) => {
       pjlist.value = d
@@ -170,8 +170,9 @@ function startdrag(e: MouseEvent) {
 
 #projects {
   h1 {
-    color: #fff562;
-    text-shadow: #fff562 0 0 2px;
+    color: #328bf0;
+    margin: 0 0 1rem 0;
+    text-shadow: #328bf0e0 0 0 3px;
   }
 
   p {

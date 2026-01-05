@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
+import { onMounted } from 'vue';
 gsap.registerPlugin(ScrollToPlugin)
 addEventListener("DOMContentLoaded", () => {
   const avat = document.getElementById("ava")
@@ -25,12 +26,36 @@ function goto() {
 
   })
 }
+onMounted(() => {
+  const avat = document.getElementById("ava")
+  avat?.addEventListener("load", () => {
+    gsap.to("#ava", { opacity: 1, duration: 0.5 })
+    gsap.to("#avat", { backgroundColor: '#7bff76', duration: 1, delay: 0.5, opacity: 1, boxShadow: '#7bff76 0px 0px 10px 0px' })
+  })
+  const tl = gsap.timeline()
+  tl.to("#person", { left: 0 })
+  const t2 = gsap.timeline()
+  t2.repeat(-1)
+  t2.yoyo(true)
+  t2.to("#more3", { opacity: 0, duration: 0.3 })
+    .to("#more2", { opacity: 0, duration: 0.3 })
+})
+const prop = defineProps({
+  random: {
+    type: Number,
+    required: true,
+  }
+})
+const a = prop.random
+const slog = ["从来没有人质疑日升月落，也没有人质疑万物生长。", "“我想让你坚信，我们仍可同行，在无尽花海中聆听……宇宙的声音。”", "晚安...", "沧海桑田，山河世变", "Miss You."]
+console.log(prop.random)
 </script>
 <template>
   <div id="person">
     <div id="avat"><img id="ava" src="https://sakurasen.cn/icon" alt=""></div>
     <h1>Hi! This is SanMu.</h1>
-    <span>Take More</span>
+    <p>{{ slog[a] }}</p>
+    <span @click="goto" style="cursor: pointer;">Get More</span>
     <div @click="goto" id="more">
 
       <svg v-for="(index) in 3" :id="'more' + index" :key="index" :style="{ 'top': index * 0 }" t="1766941415654"
@@ -102,6 +127,11 @@ function goto() {
     color: #fff;
   }
 
+  p {
+    color: #fff;
+    margin: 0 0 2rem 0;
+  }
+
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -111,6 +141,7 @@ function goto() {
 
   h1 {
     color: #fff;
+    margin: 1rem 0;
   }
 
   #avat {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import gsap from 'gsap';
 type friendobj = {
   "name": string
@@ -37,7 +37,7 @@ function SetList2(arr: friendobj[]): friendobj[][] {
   return a
 }
 function GetList() {
-  fetch('./friends.json')
+  fetch('./json/friends.json')
     .then((d) => d.json())
     .then((d) => {
       const a = []
@@ -56,13 +56,9 @@ function isit() {
     isphone.value = false
   }
 }
-onMounted(() => {
-  GetList()
-  isit()
-})
 let pb: gsap.core.Tween
 let self: gsap.core.Tween
-window.addEventListener('DOMContentLoaded', () => {
+function loadavat() {
   pb = gsap.to("#cov", {
     rotate: 360,
     duration: 60,
@@ -70,13 +66,6 @@ window.addEventListener('DOMContentLoaded', () => {
     ease: 'none',
     repeat: -1,
   })
-})
-window.addEventListener('load', () => {
-  select(0)
-})
-
-//为啥呢，只有这个load加载完才能获取所有列表:(
-window.addEventListener('load', () => {
   const list = document.querySelectorAll('.avats')
   self = gsap.to(list, {
     rotate: 360,
@@ -86,10 +75,26 @@ window.addEventListener('load', () => {
     repeat: -1,
   })
   self.play()
-})
-window.addEventListener('resize', () => {
+}
+onMounted(() => {
+  GetList()
   isit()
+
+  window.addEventListener('resize', () => {
+    isit()
+  })
+  window.addEventListener('load', () => {
+    select(0)
+  })
 })
+
+onUnmounted(() => {
+  console.log("bye")
+})
+
+
+//为啥呢，只有这个load加载完才能获取所有列表:(
+
 function shuffle(arr: friendobj[]): friendobj[] {
   const res = [...arr]
   for (let i = res.length - 1; i > 0; i--) {
@@ -145,6 +150,10 @@ function sel(num: number) {
   }
 
 }
+const imgload = ref(false)
+watch(imgload, () => {
+  loadavat()
+})
 </script>
 <template>
 
@@ -162,8 +171,8 @@ function sel(num: number) {
           <div v-for="(d, index) in friendslist" id="friend" :class="'p' + index" :key="index"
             :style="{ 'transform': 'rotate(' + (index) * (360 / friendslist!.length) + 'deg) translate(' + (isphone ? 4 : 12) + 'rem)' }">
             <div id="icon" @click="sel(index);" @mouseenter="isphone ? '' : pb.pause(); self.pause();"
-              @mouseleave="isphone ? '' : pb.play(); self.play();"><img class="avats" draggable="false" :src="d.avat"
-                alt=""></div>
+              @mouseleave="isphone ? '' : pb.play(); self.play();"><img @load="imgload = true" class="avats"
+                draggable="false" :src="d.avat" alt=""></div>
           </div>
         </div>
       </div>
@@ -194,11 +203,17 @@ function sel(num: number) {
     <div id="andmore">
       <p>友情链接每次刷新都会随机排列</p>
       <p>本站与友情链接无任何从属关系，不做任何保障</p>
-      <div style="display: flex; gap: 2rem;"><span>申请友链</span> <span>问题反馈</span></div>
+      <div style="display: flex; gap: 2rem;"><a class="link" href="https://blog.sakurasen.cn/post/friendlink/"
+          target="_blank">申请友链</a><a class="link" href="https://blog.sakurasen.cn/post/friendlink/"
+          target="_blank">问题反馈</a></div>
     </div>
   </div>
 </template>
 <style scoped>
+.link {
+  color: #c6ffa1;
+}
+
 #andmore {
   p {
     color: #ffadad83;
@@ -345,8 +360,8 @@ function sel(num: number) {
   align-items: center;
 
   h1 {
-    color: #ff6262;
-    text-shadow: #ff6262 0 0 2px;
+    color: #328bf0;
+    text-shadow: #328bf0 0 0 2px;
   }
 
 

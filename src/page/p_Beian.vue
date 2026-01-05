@@ -7,7 +7,7 @@ const gongan = ref("你不应该看到这段文字，如果看到，请联系我
 const ga = ref("")
 function beianinfo() {
   switch (damo) {
-    case "localhost":
+    case "sakurasen.cn":
       icp.value = "豫ICP备2024071946号"
       gongan.value = "豫公网安备41040302000150号"
       ga.value = "https://beian.mps.gov.cn/#/query/webSearch?code=41040302000150"
