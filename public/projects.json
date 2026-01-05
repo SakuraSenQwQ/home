@@ -1,0 +1,13 @@
+[
+  {
+    "name": "HomePage",
+    "desc": "个人主页（此页面）",
+    "github": "https://github.com/SakuraSenQwQ/HomePage",
+    "web": "https://sakurasen.cn/"
+  },{
+    "name": "SenBlog",
+    "desc": "我的博客",
+    "github": "https://github.com/SakuraSenQwQ/SENblog",
+    "web": "https://blog.sakurasen.cn/"
+  }
+]
