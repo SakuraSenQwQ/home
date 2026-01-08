@@ -81,7 +81,8 @@ const slog = ["从来没有人质疑日升月落，也没有人质疑万物生�
 
   h1 {
     font-size: 3rem;
-    color: #fff;
+    color: #328bf0;
+    text-shadow: #328bf0 0 0 2px;
   }
 
   h2 {

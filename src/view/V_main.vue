@@ -7,6 +7,7 @@ import p_Beian from '@/page/p_Beian.vue';
 
 import P_Sponsor from '@/page/p_Sponsor.vue';
 import P_Blog from '@/page/p_Blog.vue';
+import P_WillYouDo from '@/page/p_WillYouDo.vue';
 const prop = defineProps({
   random: {
     type: Number,
@@ -18,10 +19,13 @@ const prop = defineProps({
   <div id="main">
     <P_Home :random="prop.random" />
     <P_Whoami />
+
     <P_Blog />
+
     <P_Frineds />
     <p_Projects />
     <P_Sponsor></P_Sponsor>
+    <P_WillYouDo />
     <p_Beian />
   </div>
 </template>

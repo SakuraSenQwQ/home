@@ -56,7 +56,7 @@ const isplay = ref(false)
 const playingtime = ref(0)
 const audiotime = ref(0)
 const AutoMusic = prop.random
-const baseurl = "http://192.168.1.153:9191/v1"
+const baseurl = "https://api.sakurasen.cn/v1"
 
 const autolist = ["125074", "779480", "514530", "514533", "514540"]
 

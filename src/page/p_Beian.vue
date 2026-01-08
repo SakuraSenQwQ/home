@@ -30,14 +30,13 @@ onMounted(() => {
 </script>
 <template>
   <div id="beian" class="page">
-    <p>{{ damo }}</p>
     <p><a href="https://beian.miit.gov.cn/" target="_blank">{{ icp }}</a></p>
     <p><a :href="ga" target="_blank">{{ gongan }}</a></p>
   </div>
 </template>
 <style scoped>
 #beian {
-  padding: 0;
+  padding: 2rem;
 
   p {
     color: #fff;

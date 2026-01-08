@@ -4,6 +4,7 @@ type blog = {
   name: string
   link: string
 }
+const loaded = ref(false)
 const bloglist = ref<blog[]>([])
 function getlist() {
   fetch("https://blog.sakurasen.cn").then((d) => d.text()).then((d) => {
@@ -13,7 +14,9 @@ function getlist() {
     for (let i = 1; i < 7; i++) {
       const a = card[i]?.children[1] as HTMLLinkElement
       bloglist.value.push({ name: a.ariaLabel!, link: a.getAttribute('href')! })
+
     }
+    loaded.value = true
   })
 }
 onMounted(() => {
@@ -21,7 +24,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="page blogs">
+  <div class="page blogs" v-if="loaded">
     <h1>我的文章</h1>
     <div class="view">
       <div class="links" :title="v.name" v-for="(v, i) in bloglist" :key="i">
@@ -58,7 +61,7 @@ onMounted(() => {
     white-space: nowrap;
     padding: 0 0.5rem;
     text-align: start;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 
   }
 }
