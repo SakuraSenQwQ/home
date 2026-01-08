@@ -16,5 +16,11 @@
     "desc": "Stack主题二次修改",
     "github": "https://github.com/SakuraSenQwQ/hugo-theme-stack",
     "web": ""
+  },
+  {
+    "name": "Bmoji",
+    "desc": "BiliBIli表情包浏览器",
+    "github": "https://github.com/SakuraSenQwQ/Bmoji",
+    "web": "https://bmoji.sakurasen.cn/"
   }
 ]
