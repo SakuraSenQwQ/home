@@ -3,13 +3,14 @@ import gsap from 'gsap';
 import { onMounted, ref } from 'vue';
 type resp = { "code": number, "id": number, "no": number, "question": string, "yes": number, "sel": number }
 const qa = ref<resp>()
-
+const seled = ref(false)
 function GetQA() {
   fetch("https://api.sakurasen.cn/v1/home/GetQA").then((d) => d.json()).then((d) => {
     qa.value = d
     if (qa.value?.sel === 0) {
       return
     }
+    seled.value = true
     gsap.to(".sel", {
       gap: 0,
       duration: 0,
@@ -57,12 +58,18 @@ function GetQA() {
 }
 
 function Select(bl: boolean) {
+  if (seled.value){
+    return
+  }
+  seled.value = true
   gsap.to(".sel", {
     gap: 0,
     duration: 0,
   })
   if (bl) {
-    fetch("https://api.sakurasen.cn/v1/home/UpQA?lol=" + "yes")
+    fetch("https://api.sakurasen.cn/v1/home/UpQA?lol=" + "yes").catch(() => {
+      seled.value = false
+    })
     qa.value!.yes += 1
     disp.value.no = String(qa.value!.no)
     disp.value.yes = String(qa.value!.yes)
@@ -85,7 +92,9 @@ function Select(bl: boolean) {
       duration: 0
     })
   } else {
-    fetch("https://api.sakurasen.cn/v1/home/UpQA?lol=" + "no")
+    fetch("https://api.sakurasen.cn/v1/home/UpQA?lol=" + "no").catch(() => {
+      seled.value = false
+    })
     qa.value!.no += 1
     disp.value.no = String(qa.value!.no)
     disp.value.yes = String(qa.value!.yes)

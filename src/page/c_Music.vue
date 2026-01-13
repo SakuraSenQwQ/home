@@ -400,7 +400,7 @@ function musicleave() {
       <h1 class="mtitle">塞壬唱片</h1>
       <span>{{ now }}</span>
     </div>
-    <div id="play" v-if="initok">
+    <div id="play" v-show="initok">
       <img id="mcover" @mouseenter="mcoverenter()" @load="Setting()" :src="AlbumInfo?.coverUrl"
         referrerpolicy="no-referrer" alt="">
       <div id="con">

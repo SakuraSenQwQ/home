@@ -165,7 +165,7 @@ watch(imgload, () => {
           <img v-if="info?.avat !== undefined" :src="info?.avat" alt="">
           <h2 :style="{ color: info?.color1 }">{{ info?.name }}</h2>
           <p :style="{ color: info?.color2 }">{{ info?.bio }}</p>
-          <a href="">{{ info?.url }}</a>
+          <a :href="'https://'+info?.url+'?from=3mua.cn'">{{ info?.url }}</a>
         </div>
         <div id="cov">
           <div v-for="(d, index) in friendslist" id="friend" :class="'p' + index" :key="index"
