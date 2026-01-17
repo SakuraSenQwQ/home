@@ -5,7 +5,7 @@ type resp = { "code": number, "id": number, "no": number, "question": string, "y
 const qa = ref<resp>()
 const seled = ref(false)
 function GetQA() {
-  fetch("https://b.sakurasen.cn/myapi/v1/home/GetQA").then((d) => d.json()).then((d) => {
+  fetch("https://b.sakurasen.cn/api/myapi/v1/home/GetQA").then((d) => d.json()).then((d) => {
     qa.value = d
     if (qa.value?.sel === 0) {
       return
@@ -67,7 +67,7 @@ function Select(bl: boolean) {
     duration: 0,
   })
   if (bl) {
-    fetch("https://api.sakurasen.cn/v1/home/UpQA?lol=" + "yes").catch(() => {
+    fetch("https://b.sakurasen.cn/api/myapi/v1/home/UpQA?lol=" + "yes").catch(() => {
       seled.value = false
     })
     qa.value!.yes += 1
@@ -92,7 +92,7 @@ function Select(bl: boolean) {
       duration: 0
     })
   } else {
-    fetch("https://api.sakurasen.cn/v1/home/UpQA?lol=" + "no").catch(() => {
+    fetch("https://b.sakurasen.cn/api/myapi/v1/home/UpQA?lol=" + "no").catch(() => {
       seled.value = false
     })
     qa.value!.no += 1
