@@ -5,7 +5,7 @@ type resp = { "code": number, "id": number, "no": number, "question": string, "y
 const qa = ref<resp>()
 const seled = ref(false)
 function GetQA() {
-  fetch("https://api.sakurasen.cn/v1/home/GetQA").then((d) => d.json()).then((d) => {
+  fetch("https://b.sakurasen.cn/myapi/v1/home/GetQA").then((d) => d.json()).then((d) => {
     qa.value = d
     if (qa.value?.sel === 0) {
       return
@@ -37,8 +37,8 @@ function GetQA() {
     } else {
       disp.value.tip = "有" + qa.value?.no + "人和你一样"
       const count = (qa.value!.no) / (qa.value!.no + qa.value!.yes)
-      disp.value.yes = String(Math.floor(count * 100)) + "%"
-      disp.value.no = String(Math.floor((1 - count) * 100)) + "%"
+      disp.value.no = String(Math.floor(count * 100)) + "%"
+      disp.value.yes = String(Math.floor((1 - count) * 100)) + "%"
       gsap.to("#no", {
         width: String(count * 15) + "rem",
         duration: 0.6,

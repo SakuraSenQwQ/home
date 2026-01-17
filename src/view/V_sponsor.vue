@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import router from '@/router';
 import { ref } from 'vue';
-const baseurl = "https://api.sakurasen.cn/v1"
+const baseurl = "https://b.sakurasen.cn/myapi/v1"
 const imgsrc = ref('/imgs/m1.gif')
 function sel(num: number) {
   if (num == 0) {
