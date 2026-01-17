@@ -53,7 +53,7 @@ const slog = ["从来没有人质疑日升月落，也没有人质疑万物生�
 </script>
 <template>
   <div id="person">
-    <div id="avat"><img id="ava" src="https://sakurasen.cn/icon" alt=""></div>
+    <div id="avat"><img id="ava" src="https://sakurasen.cn/imgs/avat.png" alt=""></div>
     <h1>Hi! This is SanMu.</h1>
     <p>{{ slog[a] }}</p>
     <span @click="goto" style="cursor: pointer;">Get More</span>
