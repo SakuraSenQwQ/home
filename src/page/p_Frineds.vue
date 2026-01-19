@@ -183,7 +183,7 @@ watch(imgload, () => {
         <div>
           <h2 :style="{ color: info?.color1 }">{{ info?.name }}</h2>
           <p :style="{ color: info?.color2 }">{{ info?.bio }}</p>
-          <a :href="info?.url" target="_blank">{{ info?.url }}</a>
+          <a :href="'https://'+info?.url+'?from=3mua.cn'" target="_blank">{{ info?.url }}</a>
         </div>
       </div>
 
