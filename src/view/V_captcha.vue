@@ -9,8 +9,8 @@
   const p = ref("加载中")
   const res = ref(null)
   const ok = ref(false)
-  function cp(){
-    navigator.clipboard.writeText("#终末地 人机验证 "+JSON.stringify(res.value))
+  function cp() {
+    navigator.clipboard.writeText("#终末地 人机验证 " + JSON.stringify(res.value))
   }
   if (gt == null || cl == null) {
     p.value = "参数错误！"
@@ -21,7 +21,8 @@
     document.body.append(sc)
     sc.addEventListener("load", () => {
       const captchaBox = document.getElementById("captcha-box");
-
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       initGeetest(
 
         {
@@ -81,7 +82,7 @@
       <p>认证通过</p>
       <p>请复制以下内容</p>
       <span @click="cp()">点击复制</span>
-      <p>{{ "#终末地 人机验证 "+JSON.stringify(res) }}</p>
+      <p>{{ "#终末地 人机验证 " + JSON.stringify(res) }}</p>
     </div>
   </div>
 
@@ -89,7 +90,7 @@
 </template>
 
 <style scoped>
-.scus{
+.scus {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -98,6 +99,7 @@
   max-width: 100%;
   word-break: break-all;
 }
+
 #captcha-box {
   display: flex;
   justify-content: center;
@@ -114,7 +116,8 @@
     color: #fff;
     white-space: wrap;
   }
-  span{
+
+  span {
     color: #aeff6d;
   }
 }
