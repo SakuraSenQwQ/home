@@ -41,7 +41,8 @@
 
         },
 
-        function (captchaObj) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        function (captchaObj: any) {
           captchaObj.appendTo(captchaBox);
           captchaObj.onReady(function () {
             // DOM 准备好后，隐藏 #loading-tip 元素
@@ -57,7 +58,8 @@
             ok.value = true
 
           });
-          captchaObj.onError(function (error) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          captchaObj.onError(function (error: any) {
             // 出错啦，可以提醒用户稍后进行重试
             // error 包含error_code、msg
             p.value = "加载错误"
