@@ -21,6 +21,7 @@ function beianinfo() {
       icp.value = "豫ICP备2024071946号-2"
       gongan.value = ""
       ga.value = "#"
+      break
     default:
       icp.value = "您所访问的域名并不在备案列表内"
       gongan.value = "您所访问的域名并不在备案列表内"
