@@ -17,6 +17,10 @@ function beianinfo() {
       gongan.value = "哈哈，那无敌了"
       ga.value = "https://yuanshen.com"
       break;
+    case "3mua.cn":
+      icp.value = "豫ICP备2024071946号-2"
+      gongan.value = ""
+      ga.value = "#"
     default:
       icp.value = "您所访问的域名并不在备案列表内"
       gongan.value = "您所访问的域名并不在备案列表内"
