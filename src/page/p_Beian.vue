@@ -19,8 +19,8 @@ function beianinfo() {
       break;
     case "3mua.cn":
       icp.value = "豫ICP备2024071946号-2"
-      gongan.value = ""
-      ga.value = "#"
+      gongan.value = "豫公网安备41040302000173号"
+      ga.value = "#https://beian.mps.gov.cn/#/query/webSearch?code=41040302000173"
       break
     default:
       icp.value = "您所访问的域名并不在备案列表内"
